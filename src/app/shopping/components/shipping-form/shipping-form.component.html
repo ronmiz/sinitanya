@@ -1,34 +1,48 @@
 <form #f="ngForm">
   <div class="form-group">
-    <label for="">Name</label>
-    <input #name="ngModel" name="name" [(ngModel)]="shipping.name" type="text" class="form-control" required>
-    <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
-      <div *ngIf="name.errors.required">Name is required.</div>
+    <label for="">שם פרטי</label>
+    <input #firstName="ngModel" firstName="firstName" [(ngModel)]="shipping.firstName" type="text" class="form-control" required>
+    <div class="alert alert-danger" *ngIf="firstName.touched && firstName.invalid">
+      <div *ngIf="firstName.errors.required">מילוי שם פרטי חובה</div>
     </div>
   </div>
   <div class="form-group">
-    <label for="">Address</label>
-    <input #addressLine1="ngModel" name="addressLine1" [(ngModel)]="shipping.addressLine1" type="text" class="form-control" placeholder="Line 1" required>
+      <label for="">שם משפחה</label>
+      <input #lastName="ngModel" lastName="lastName" [(ngModel)]="shipping.lastName" type="text" class="form-control" required>
+      <div class="alert alert-danger" *ngIf="lastName.touched && lastName.invalid">
+        <div *ngIf="lastName.errors.required">מילוי שם פרמשפחה חובה</div>
+      </div>
+    </div>
+  <div class="form-group">
+    <label for="addressLine1">כתובת</label>
+    <input #addressLine1="ngModel" name="addressLine1" [(ngModel)]="shipping.addressLine1" type="text" class="form-control" placeholder="כתובת" required>
     <div class="alert alert-danger" *ngIf="addressLine1.touched && addressLine1.invalid">
-      <div *ngIf="addressLine1.errors.required">Address Line 1 is required.</div>
+      <div *ngIf="addressLine1.errors.required">כתובת חובה למלא</div>
     </div>
   </div>
   <div class="form-group">
-    <label for=""></label>
-    <input #addressLine2="ngModel" name="addressLine2" [(ngModel)]="shipping.addressLine2" type="text" class="form-control" placeholder="Line 2" required>
-    <div class="alert alert-danger" *ngIf="addressLine2.touched && addressLine2.invalid">
-      <div *ngIf="addressLine2.errors.required">Address Line 2 is required.</div>
+    <label for="homePhone">טלפון בית</label>
+    <input #homePhone="ngModel" name="homePhone" [(ngModel)]="shipping.homePhone" type="text" class="form-control" placeholder="טלפון בית">
+    <div class="alert alert-danger" *ngIf="homePhone.touched && homePhone.invalid">
+      <div *ngIf="homePhone.errors.required">Address Line 2 is required.</div>
     </div>
   </div>
   <div class="form-group">
-    <label for="">City</label>
-    <input #city="ngModel" name="city" [(ngModel)]="shipping.city" type="text" class="form-control" required>
-    <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
-      <div *ngIf="city.errors.required">City is required.</div>
+      <label for="mobile">טלפון נייד</label>
+      <input #mobile="ngModel" name="mobile" [(ngModel)]="shipping.mobile" type="text" class="form-control" placeholder="טלפון נייד" required>
+      <div class="alert alert-danger" *ngIf="mobile.touched && mobile.invalid">
+        <div *ngIf="mobile.errors.required">מילוי טלפון נייד חובה</div>
+      </div>
+    </div>
+  <div class="form-group">
+    <label for="email">דוא"ל</label>
+    <input #email="ngModel" name="email" [(ngModel)]="shipping.email" type="text" class="form-control" >
+    <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+      <div *ngIf="email.errors.required">מילוי שם עיר חובה.</div>
     </div>
   </div>
   <button 
     [disabled]="!f.valid"
     (click)="placeOrder()"
-    class="btn btn-primary">Place Order</button>
+    class="btn btn-primary">ביצוע הזמנה</button>
 </form>    

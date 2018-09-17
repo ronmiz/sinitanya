@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-body">
-    <h4 class="card-title">Order Summary</h4>
-    <p class="card-text">You have {{ cart.totalItemsCount }} items in your shopping cart.</p>
+    <h4 class="card-title">סיכום הזמנה</h4>
+    <p class="card-text">יש לך {{ cart.totalItemsCount }} פריטים בעגלת הקניות שלך</p>
     <ul class="list-group list-group-flush">
       <li *ngFor="let item of cart.items" class="list-group-item">
         {{ item.quantity }} x {{ item.title }}
@@ -10,7 +10,7 @@
         </div>
       </li>
       <li class="list-group-item font-weight-bold">
-        Total 
+        סה"כ 
         <div class="float-right">
           {{ cart.totalPrice | currency:'USD':true }}
         </div>

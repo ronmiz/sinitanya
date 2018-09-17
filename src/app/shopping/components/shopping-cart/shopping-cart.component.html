@@ -1,9 +1,9 @@
-<h1>Shopping Cart</h1>
+<h1>עגלת קניות</h1>
 <div class="card" *ngIf="cart$ | async as cart" style="width: 80%;">
   <div class="card-body">
     <p>
-      You have {{ cart.totalItemsCount }} items in your shopping cart.
-      <button *ngIf="cart.items.length" (click)="clearCart()" class="float-right btn btn-light btn-sm">Clear Shopping Cart</button>
+      יש לך {{ cart.totalItemsCount }} פריטים בעגלת הקניות שלך.
+      <button *ngIf="cart.items.length" (click)="clearCart()" class="float-right btn btn-light btn-sm">ניקוי</button>
 
     </p>
   </div>
@@ -11,9 +11,9 @@
     <thead>
       <tr>
         <th></th>
-        <th>Product</th>
-        <th class="text-center" style="width: 230px">Quantity</th>
-        <th class="text-right" style="width: 200px">Price</th>
+        <th>מוצרים</th>
+        <th class="text-center" style="width: 230px">כמות</th>
+        <th class="text-right" style="width: 200px">מחיר</th>
       </tr>
     </thead>
     <tbody>
@@ -39,11 +39,11 @@
         <th></th>
         <th></th>
         <th></th>
-        <th class="text-right">{{ cart.totalPrice | currency:'USD':true }}</th>
+        <th class="text-right">{{ cart.totalPrice | currency:'IL':true }}</th>
       </tr>
       <tr>
         <th colspan="4">
-          <a *ngIf="cart.items.length" routerLink="/check-out" class="btn btn-primary">Check Out</a>
+          <a *ngIf="cart.items.length" routerLink="/check-out" class="btn btn-primary">לביצוע קניה</a>
         </th>
       </tr>
     </tfoot>

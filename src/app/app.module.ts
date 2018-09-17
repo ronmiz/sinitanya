@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
+import { LOCALE_ID } from '@angular/core';
 
 import { environment } from './../environments/environment';
 import { AdminModule } from './admin/admin.module';
@@ -31,6 +32,7 @@ import { ShoppingModule } from './shopping/shopping.module';
   ],
   providers: [
     AdminAuthGuard,
+    [ { provide: LOCALE_ID, useValue: 'he' } ],
   ],
   bootstrap: [AppComponent]
 })
