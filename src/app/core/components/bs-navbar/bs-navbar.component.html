@@ -13,9 +13,12 @@
           <a class="nav-link" routerLink="/shopping-cart">
             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
             <span class="badge badge-warning badge-pill" *ngIf="cart$ | async as cart">
-              {{ cart.totalItemsCount }}
+             
+             מספר פריטים בעגלה {{ cart.totalItemsCount }} | ס"הכ סכום {{ cart.totalPrice }} ש"ח
+              
             </span>
           </a>
+          <i> סכום לתשלום למסלול : {{ programPrice }} | סכום הקניה למסלול :  {{ programLimit }} | {{ programName }}</i>
         </li>
       </ul>
       <ul class="navbar-nav">

@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
   declarations: [
     BsNavbarComponent,
     HomeComponent,
-    LoginComponent,        
+    LoginComponent,
   ],
   exports: [
     BsNavbarComponent

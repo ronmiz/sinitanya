@@ -1,5 +1,6 @@
 import { Product } from './product';
 import { ShoppingCartItem } from './shopping-cart-item';
+import { ProgramDataService } from './../services/program-data.service';
 
 export class ShoppingCart { 
   items: ShoppingCartItem[] = [];
@@ -22,6 +23,8 @@ export class ShoppingCart {
     let sum = 0;
     for (let productId in this.items) 
       sum += this.items[productId].totalPrice;
+      // this.progdata.updateTotalSum(sum);
+      //console.log('sum - totalPrice : ' , sum)
     return sum;
   }
   
