@@ -4,6 +4,7 @@ import { ProgramDataService } from './../services/program-data.service';
 
 export class ShoppingCart { 
   items: ShoppingCartItem[] = [];
+  progData:ProgramDataService;
 
   constructor(private itemsMap: { [productId: string]: ShoppingCartItem }) {
     this.itemsMap = itemsMap || {};
@@ -23,8 +24,7 @@ export class ShoppingCart {
     let sum = 0;
     for (let productId in this.items) 
       sum += this.items[productId].totalPrice;
-      // this.progdata.updateTotalSum(sum);
-      //console.log('sum - totalPrice : ' , sum)
+
     return sum;
   }
   

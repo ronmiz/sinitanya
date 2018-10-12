@@ -3,17 +3,20 @@ import { Product } from '../../models/product';
 import { Component, OnInit, Input } from '@angular/core';
 
 import { ShoppingCart } from './../../models/shopping-cart';
+import { ProgramDataService } from './../../services/program-data.service';
 
 @Component({
   selector: 'product-quantity',
   templateUrl: './product-quantity.component.html',
   styleUrls: ['./product-quantity.component.css']
 })
-export class ProductQuantityComponent  {
+export class ProductQuantityComponent {
   @Input('product') product: Product;
   @Input('shopping-cart') shoppingCart; 
 
-  constructor(private cartService: ShoppingCartService) { }
+  constructor(private cartService: ShoppingCartService, private programDataService :ProgramDataService) { 
+    
+  }
 
   addToCart() {
     this.cartService.addToCart(this.product);
@@ -22,6 +25,5 @@ export class ProductQuantityComponent  {
   removeFromCart() {
     this.cartService.removeFromCart(this.product);
   }
-
 
 }

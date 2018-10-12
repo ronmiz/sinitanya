@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   promptMessage = '';
   massageTitle:string;
   massageBody:string;
+  totalCartSum:number;
 
   constructor(private SimpleModalService: SimpleModalService, private progdata:ProgramDataService,private router:Router) { }
 

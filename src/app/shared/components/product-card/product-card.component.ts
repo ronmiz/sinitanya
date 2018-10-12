@@ -2,6 +2,7 @@ import { ShoppingCart } from '../../models/shopping-cart';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
 import { Product } from '../../models/product';
 import { Component, OnInit, Input } from '@angular/core';
+import { ProgramDataService } from './../../services/program-data.service';
 
 @Component({
   selector: 'product-card',
@@ -13,9 +14,14 @@ export class ProductCardComponent {
   @Input('show-actions') showActions = true;
   @Input('shopping-cart') shoppingCart: ShoppingCart; 
 
-  constructor(private cartService: ShoppingCartService) { }
+  constructor(private cartService: ShoppingCartService,private programDataService :ProgramDataService) { }
 
   addToCart() {
+    console.log('ProductCardComponent :: addToCart() shoppingCart')
     this.cartService.addToCart(this.product);
+    this.updatetotalPrice()
+  }
+  updatetotalPrice(){
+    this.programDataService.updateTotalSum(this.shoppingCart.totalPrice);
   }
 }

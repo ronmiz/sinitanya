@@ -57,7 +57,7 @@ export class ProgramDataService {
   }
   updateTotalSum(sum:number){
     this.totalCartSum = sum
-    console.log('this.totalCartSum = ',sum);
+    console.log('this.totalCartSum update  = ',sum);
   }
 
 }
