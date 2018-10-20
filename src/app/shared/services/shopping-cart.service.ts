@@ -5,11 +5,21 @@ import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/data
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/take'; 
 import 'rxjs/add/operator/map'; 
+import { ProgramDataService } from './program-data.service';
+import { Subscriber } from 'rxjs/Subscriber';
+import { Observer } from 'firebase/app';
 
 @Injectable()
 export class ShoppingCartService {
+  _isAddExtraItem$;
+  canAddExtraItem:boolean;
+  idExstra:string;
+  isAdded:boolean= false;
 
-  constructor(private db: AngularFireDatabase) { }
+
+  constructor(private db: AngularFireDatabase, private progData:ProgramDataService) { 
+    this.idExstra = this.progData.idExtraToPrograme;
+  }
 
   async getCart(): Promise<Observable<ShoppingCart>> {
     let cartId = await this.getOrCreateCartId();
@@ -18,10 +28,34 @@ export class ShoppingCartService {
   }
 
   async addToCart(product: Product) { 
-    this.updateItem(product, 1);
+    console.log('in add to cart product = ' , product)
+    
+    let isId:number = product.imageUrl.indexOf(this.progData.idExtraToPrograme);
+      if(this.progData.isInPrograme  && isId !== -1){
+        this.updateItem(product, 1);
+      }
+      else if (isId !== -1) {
+        let  sub = this.progData.changeIsOkToAddExstraItem
+        this.progData.changeAddExtraItem.next(true);
+        this._isAddExtraItem$ = sub.take(1).subscribe((value ) =>{
+          console.log('----- sub.subscribe((value )add to cart--------')
+          console.log(value)
+          this.isAdded = value;
+          if (this.isAdded){
+            this.updateItem(product, 1);
+            this.progData.updateExrtaSum(product.price)
+            return;
+          }
+          sub.unsubscribe()
+        })
+      }
+      else{
+        this.updateItem(product, 1);
+      }
   }
 
   async removeFromCart(product: Product) {
+    // console.log("removeFromCart ",product.imageUrl + 'this.progData.isOverLimit', this.progData.isOverLimit)
     this.updateItem(product, -1);
   }
 
@@ -64,4 +98,19 @@ export class ShoppingCartService {
       });
     });
   }
+  // checkExstraItem():boolean{
+  //   // console.log(' cart service before this.progData.isOkToAddExstraItem == ' ,this.progData.isOkToAddExstraItem)
+
+  //   //  if (!this.progData.isOkToAddExstraItem){
+  //     //  console.log(' cart service in if this.progData.isOkToAddExstraItem == ' ,this.progData.isOkToAddExstraItem)
+  //     // this.progData.checkAddExtraItem()
+      
+  //     this.progData.changeAddExtraItem.subscribe((res) => {
+  //       // if(res){
+  //         this.canAddExtraItem = res
+  //       //  }
+  //     })
+  //   // }
+  //   return this.canAddExtraItem;
+  //  }
 }

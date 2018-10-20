@@ -21,10 +21,13 @@ export class BsNavbarComponent implements OnInit {
   programName:string='';
   programLimit:number;
   programPrice:number;
+  isInPrograme:boolean;
+  okToAddextra:boolean;
   currentPay:number;
   _subscription:any;
   cartTotalPrice:number;
   totalSum:number;
+  strSerche:string;
  
 
 
@@ -35,11 +38,14 @@ export class BsNavbarComponent implements OnInit {
   async ngOnInit() { 
     this.auth.appUser$.subscribe(appUser => this.appUser = appUser);
     this.cart$ = await this.shoppingCartService.getCart();
-    console.log(this.cart$.subscribe(x => console.log(x.totalPrice)))
-    this.cart$.subscribe(x => {
-      this.totalSum = x.totalPrice
-      this.updatetotalPrice()
     
+    
+    this.cart$.subscribe(x => {
+      // if(this.isInPrograme || this.okToAddextra){
+        this.totalSum = x.totalPrice;
+        this.updatetotalPrice();
+      // }
+      // this.updatetotalPrice();
     });
    
     this.programName = this.progDataService.programName;
@@ -58,7 +64,17 @@ export class BsNavbarComponent implements OnInit {
     this.programPrice = value
       console.log('this.programPrice == ' ,this.programPrice  )
     });
-    
+    this.isInPrograme = this.progDataService.isInPrograme;
+    this._subscription = this.progDataService.changeIsInPrograme.subscribe((value) => { 
+    this.isInPrograme = value
+      console.log('this.isInPrograme  == ' ,this.isInPrograme   )
+    });
+
+    // this.okToAddextra = this.progDataService.isOkToAddExstraItem;
+    // this._subscription = this.progDataService.changeAddExtraItem.subscribe((value) => { 
+    // this.okToAddextra = value
+    //   console.log('this.okToAddextra== ' ,this.okToAddextra  )
+    // });
   }
   updatetotalPrice(){
     this.progDataService.updateTotalSum(this.totalSum);
