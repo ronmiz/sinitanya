@@ -20,9 +20,13 @@ export class OrderService {
   getOrdersByUser(userId: string) {
     return this.db.list('/orders', {
       query: {
-        orderByChild: 'userId',
+        // orderByChild: 'userId',
+        orderByChild: 'workerId',
         equalTo: userId        
       }
     });
+  }
+  updateOrderSuccess(orderId){
+    this.db.list('/orders' ).update(orderId,{'ordersSuccess':true})
   }
 }

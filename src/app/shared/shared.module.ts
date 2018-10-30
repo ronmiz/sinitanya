@@ -17,6 +17,8 @@ import { ProductService } from './services/product.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { UserService } from './services/user.service';
 import { ProgramDataService } from 'shared/services/program-data.service';
+import { UserInfoService } from 'shared/services/user-info.service';
+import { WorkersService } from 'shared/services/workers.service';
 
 @NgModule({
   imports: [
@@ -51,7 +53,9 @@ import { ProgramDataService } from 'shared/services/program-data.service';
     ProductService,
     ShoppingCartService,
     OrderService,
-    ProgramDataService
+    ProgramDataService,
+    UserInfoService,
+    WorkersService
   ]
 })
 export class SharedModule { }

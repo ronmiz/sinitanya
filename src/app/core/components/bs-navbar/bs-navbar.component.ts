@@ -3,12 +3,14 @@ import { Observable } from 'rxjs/Observable';
 import { ShoppingCartService } from '../../../shared/services/shopping-cart.service';
 import { AppUser } from '../../../shared/models/app-user';
 import { AuthService } from '../../../shared/services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, VERSION, ViewChild, ElementRef } from '@angular/core';
 import { AppComponent } from '../../../app.component';
 import { ProgramDataService } from './../../../shared/services/program-data.service';
 import { Subscriber } from 'rxjs/Subscriber';
 import { SubjectSubscriber } from 'rxjs/Subject';
 import { ShoppingCart } from './../../../shared/models/shopping-cart';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'bs-navbar',
@@ -28,14 +30,19 @@ export class BsNavbarComponent implements OnInit {
   cartTotalPrice:number;
   totalSum:number;
   strSerche:string;
+  @ViewChild('navbarToggler') navbarToggler: ElementRef;
+
+	// angularVersion: string;
  
 
 
   constructor(private auth: AuthService,
      private shoppingCartService: ShoppingCartService,
-     private progDataService:ProgramDataService) {}
+     private progDataService:ProgramDataService,
+     private router:Router) {}
 
   async ngOnInit() { 
+    // this.angularVersion = VERSION.full;
     this.auth.appUser$.subscribe(appUser => this.appUser = appUser);
     this.cart$ = await this.shoppingCartService.getCart();
     
@@ -69,12 +76,6 @@ export class BsNavbarComponent implements OnInit {
     this.isInPrograme = value
       console.log('this.isInPrograme  == ' ,this.isInPrograme   )
     });
-
-    // this.okToAddextra = this.progDataService.isOkToAddExstraItem;
-    // this._subscription = this.progDataService.changeAddExtraItem.subscribe((value) => { 
-    // this.okToAddextra = value
-    //   console.log('this.okToAddextra== ' ,this.okToAddextra  )
-    // });
   }
   updatetotalPrice(){
     this.progDataService.updateTotalSum(this.totalSum);
@@ -82,5 +83,23 @@ export class BsNavbarComponent implements OnInit {
   logout() {
     this.auth.logout();
   }
+  checkAdmin(value){
+    console.log('check admin clicked' , value);
+    if(value === '56349822'){
+      this.router.navigate(['/login']);
+    }
+  }
+  collapseNav() {
+		if (this.navBarTogglerIsVisible()) {
+			console.log('collapseNav in NavigationComponent clicking navbarToggler')
+			this.navbarToggler.nativeElement.click();
+		}
+	}
+
+	private navBarTogglerIsVisible() {
+    const isVisible: boolean = (this.navbarToggler.nativeElement.offsetParent !== null);
+
+		return isVisible;
+	}
 
 }

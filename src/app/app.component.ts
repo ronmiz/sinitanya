@@ -12,10 +12,6 @@ import { SimpleModalService } from 'ngx-simple-modal';
 })
 export class AppComponent implements OnInit  {
 
-  // confirmResult = null;
-  // promptMessage = '';
-
-
 
   constructor(private userService: UserService, private auth: AuthService, router: Router,
     private SimpleModalService: SimpleModalService) {
@@ -32,15 +28,6 @@ export class AppComponent implements OnInit  {
     });
 
   }
-// showConfirm() {
-//     this.SimpleModalService.addModal(ConfirmComponent, {
-//       title: 'Confirmation',
-//       message: 'Bla bla confirm some action?'})
-//       .subscribe((isConfirmed) => {
-//         // Get modal result
-//         this.confirmResult = isConfirmed;
-//     });
-//   }
   ngOnInit(){
   }
 }

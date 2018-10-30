@@ -1,14 +1,14 @@
 <form #f="ngForm">
   <div class="form-group">
     <label for="">שם פרטי</label>
-    <input #firstName="ngModel" firstName="firstName" [(ngModel)]="shipping.firstName" type="text" class="form-control" required>
+    <input #firstName="ngModel" name="firstName" [(ngModel)]="shipping.firstName" type="text" class="form-control" required>
     <div class="alert alert-danger" *ngIf="firstName.touched && firstName.invalid">
       <div *ngIf="firstName.errors.required">מילוי שם פרטי חובה</div>
     </div>
   </div>
   <div class="form-group">
       <label for="">שם משפחה</label>
-      <input #lastName="ngModel" lastName="lastName" [(ngModel)]="shipping.lastName" type="text" class="form-control" required>
+      <input #lastName="ngModel" name="lastName" [(ngModel)]="shipping.lastName" type="text" class="form-control" required>
       <div class="alert alert-danger" *ngIf="lastName.touched && lastName.invalid">
         <div *ngIf="lastName.errors.required">מילוי שם פרמשפחה חובה</div>
       </div>
@@ -41,8 +41,24 @@
       <div *ngIf="email.errors.required">מילוי שם עיר חובה.</div>
     </div>
   </div>
+
+
+  <div class="form-group" dir="RTL">
+    <label for="workers" >נציגה</label>
+    <select #workers="ngModel" [(ngModel)]="workers$.workers" name="workers" id="workers" class="form-control" required>
+      <!-- <option value="אחר">אחר</option> -->
+      <option *ngFor="let w of workers$  | async" [value]="w.$key">
+        {{ w.firstName }} {{w.lastName}} {{ w.city}}
+      </option>
+    </select>
+    <div class="alert alert-danger" *ngIf="workers.touched && workers.invalid">
+        חובה לבחור נציגה  
+    </div>
+  </div>
+
+
   <button 
     [disabled]="!f.valid"
-    (click)="placeOrder()"
+    (click)="placeOrder(f)"
     class="btn btn-primary">ביצוע הזמנה</button>
 </form>    

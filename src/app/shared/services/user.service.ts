@@ -5,8 +5,10 @@ import * as firebase from 'firebase';
 
 @Injectable()
 export class UserService {
+  userId:string;
 
-  constructor(private db: AngularFireDatabase) { }
+  constructor(private db: AngularFireDatabase) {
+   }
 
   save(user: firebase.User) {
     this.db.object('/users/' + user.uid).update({

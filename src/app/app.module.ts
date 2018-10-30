@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule , NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
@@ -18,9 +18,10 @@ import { ProductsComponent } from './shopping/components/products/products.compo
 import { HomeComponent } from './core/components/home/home.component';
 import { ShoppingModule } from './shopping/shopping.module';
 import { ConfirmComponent } from 'app/core/confirm/confirm.component';
-
+import { FormWorkerComponent } from 'app/core/form-worker/form-worker.component';
 
 @NgModule({
+  schemas: [NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
     ConfirmComponent   
@@ -37,6 +38,7 @@ import { ConfirmComponent } from 'app/core/confirm/confirm.component';
       { path: '', component: HomeComponent },
       { path: 'app-products', component: ProductsComponent },
       { path: 'login', component: LoginComponent },
+      { path: 'form-worker', component: FormWorkerComponent },
     ])    
   ],
   entryComponents: [

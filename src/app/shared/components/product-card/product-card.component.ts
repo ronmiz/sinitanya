@@ -18,11 +18,8 @@ export class ProductCardComponent {
 
   addToCart() {
     console.log('ProductCardComponent :: addToCart() shoppingCart')
-    // if(this.programDataService.checkAddExtraItemToCart(this.product.imageUrl)){
       this.cartService.addToCart(this.product);
       this.updateTotalPrice();
-    // }
-     
   }
   updateTotalPrice(){
     this.programDataService.updateTotalSum(this.shoppingCart.totalPrice);

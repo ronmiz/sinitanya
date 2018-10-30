@@ -1,12 +1,22 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+
   <div class="container container-bkg">
     <a class="navbar-brand" routerLink="/">
-      <i class="fa fa-leaf" aria-hidden="true"></i>
+      <!-- <i class="fa fa-leaf" aria-hidden="true"></i> -->
+      <i > <img src="../../../assets/logo.png"></i>
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- <button class="navbar-toggler navbar-toggler-right" 
+    #navbarToggler
+    type="button"
+    data-toggle="collapse" 
+    data-target="#navbarsExampleDefault" 
+    aria-controls="navbarsExampleDefault" 
+    aria-expanded="false"
+     aria-label="Toggle navigation"
+
+     >
       <span class="navbar-toggler-icon"></span>
-    </button>
-  
+    </button> -->
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
@@ -18,13 +28,17 @@
               
             </span>
           </a>
-          <i> סכום לתשלום למסלול : {{ programPrice }} | סכום הקניה למסלול :  {{ programLimit }} | {{ programName }}</i>
+          <i> סכום לתשלום למסלול : {{ programPrice }} | סכום הקניה למסלול :  {{ programLimit }} |  מסלול {{ programName }} </i>
         </li>
       </ul>
       <ul class="navbar-nav">
         <ng-template #anonymousUser>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/login">כניסה\רישום</a>
+          <input #userPassword="ngModel" name="userPassword" (ngModel)="userPassword" type="password" class="form-control" >
+          <button  class="btn btn-outline-primary" (click)="checkAdmin(userPassword.value)">כניסת נציגות</button> 
+          <li class="nav-item" >
+            
+            <!-- <label for="userPassword">סיסמה : </label> -->
+            <!-- <a class="nav-link" routerLink="/login">כניסה\רישום</a> -->
           </li>
         </ng-template>
         <li ngbDropdown *ngIf="appUser; else anonymousUser" class="nav-item dropdown">
@@ -33,9 +47,10 @@
           </a>
           <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
             <a class="dropdown-item" routerLink="/my/orders">הזמנות שלי</a>
+            <a class="dropdown-item" routerLink="/my/form-worker">פרטים אישיים</a>
             <ng-container *ngIf="appUser.isAdmin">
               <a class="dropdown-item" routerLink="/admin/orders">ניהול הזמנות</a>
-              <a class="dropdown-item" routerLink="/admin/products">ניהול מוצרים</a>
+              <!-- <a class="dropdown-item" routerLink="/admin/products">ניהול מוצרים</a> -->
             </ng-container>
             <a class="dropdown-item" (click)="logout()">יציאה</a>
           </div>

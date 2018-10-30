@@ -1,19 +1,25 @@
-<h1>הזמנות</h1>
-<table class="table">
-  <thead>
-    <tr>
+<h1 dir="rtl">ההזמנות שלי</h1>
+<h3 dir="rtl">סה"כ מכירות : {{ totalOrdersSum }} ש"ח  | מספר מכירות : {{ totalNumOfOrders }}  </h3>
+
+<table class="table" >
+  <thead >
+    <tr >
       <th>לקוח</th>
       <th>תאריך</th>
-      <th></th>
+      <th>שולם</th>
+      <th>סכום הזמנה</th>
+      <!-- <th></th> -->
     </tr>
   </thead> 
   <tbody>
-    <tr *ngFor="let order of orders$ | async">
-      <td>{{ order.shipping.name }}</td>
+    <tr *ngFor="let order of orders$ | async" >
+      <td>{{ order.shipping.firstName }} {{order.shipping.lastName}} </td>
       <td>{{ order.datePlaced | date}}</td>
-      <td>
+      <td>{{ order.ordersSuccess }} </td>
+      <td>{{ order.totalOrderPrice }} ש"ח</td>
+      <!-- <td>
         <a href="#">פרטים</a>
-      </td>
+      </td> -->
     </tr>
   </tbody> 
 </table>

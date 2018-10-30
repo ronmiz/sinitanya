@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { OrderService } from 'shared/services/order.service';
 
 @Component({
   selector: 'app-order-success',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderSuccessComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route:ActivatedRoute,private orderService:OrderService) { }
 
   ngOnInit() {
+    this.route.params.subscribe((params: Params) => {
+      let orderId= params;
+      console.log(' ------- OrderSuccessComponent orderId' ,orderId)
+      console.log(orderId["id"]);
+      this.orderService.updateOrderSuccess(orderId["id"]);
+    });
   }
 
 }

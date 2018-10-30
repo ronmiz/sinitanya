@@ -8,45 +8,70 @@ import 'rxjs/add/operator/map';
 import { ProgramDataService } from './program-data.service';
 import { Subscriber } from 'rxjs/Subscriber';
 import { Observer } from 'firebase/app';
+import { ProductService } from 'shared/services/product.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Injectable()
 export class ShoppingCartService {
   _isAddExtraItem$;
+  _isAddExtraAllItem$;
   canAddExtraItem:boolean;
   idExstra:string;
+
   isAdded:boolean= false;
+  isOkToAddAllExtra:boolean= false;
+  countExtraAllItem:number = 0 ;
+
+  products: Product[];
+  subscription: Subscription;
+  public cureentCart:ShoppingCart;
+  public totalPriceToPay:number;
 
 
-  constructor(private db: AngularFireDatabase, private progData:ProgramDataService) { 
+  constructor(private db: AngularFireDatabase, 
+    private progData:ProgramDataService,
+    private productsService :ProductService) { 
     this.idExstra = this.progData.idExtraToPrograme;
   }
 
   async getCart(): Promise<Observable<ShoppingCart>> {
     let cartId = await this.getOrCreateCartId();
     return this.db.object('/shopping-carts/' + cartId)
-      .map(x => new ShoppingCart(x.items));
+      .map(x =>this.cureentCart = new ShoppingCart(x.items) );  
   }
 
   async addToCart(product: Product) { 
     console.log('in add to cart product = ' , product)
-    
+    let isIdAll30:number = product.imageUrl.indexOf(this.progData.idExtraItemAll30 );
+    let isIdAll50:number = product.imageUrl.indexOf(this.progData.idExtraItemAll50 );
     let isId:number = product.imageUrl.indexOf(this.progData.idExtraToPrograme);
-      if(this.progData.isInPrograme  && isId !== -1){
+  
+    if(isIdAll30 !== -1 || isIdAll50 !== -1)   { 
+      let  sub = this.progData.changeIsOkToAddAllExtraItem
+      
+      this.progData.checkAddAllExtraItem.next(true);
+      this._isAddExtraAllItem$ = sub.take(1).subscribe((value ) =>{
+        this.isOkToAddAllExtra = value;
+        if (this.isOkToAddAllExtra){
+          this.updateItem(product, 1);
+           this.progData.updateExrtaSumAll(product.price)
+          return;
+        }
+      });
+    }else  if(this.progData.isInPrograme  && isId !== -1){
+      this.updateItem(product, 1);
         this.updateItem(product, 1);
       }
       else if (isId !== -1) {
         let  sub = this.progData.changeIsOkToAddExstraItem
         this.progData.changeAddExtraItem.next(true);
         this._isAddExtraItem$ = sub.take(1).subscribe((value ) =>{
-          console.log('----- sub.subscribe((value )add to cart--------')
-          console.log(value)
           this.isAdded = value;
           if (this.isAdded){
             this.updateItem(product, 1);
             this.progData.updateExrtaSum(product.price)
             return;
           }
-          sub.unsubscribe()
         })
       }
       else{
@@ -55,7 +80,6 @@ export class ShoppingCartService {
   }
 
   async removeFromCart(product: Product) {
-    // console.log("removeFromCart ",product.imageUrl + 'this.progData.isOverLimit', this.progData.isOverLimit)
     this.updateItem(product, -1);
   }
 
@@ -96,21 +120,58 @@ export class ShoppingCartService {
         price: product.price,
         quantity: quantity
       });
+   
+    });
+    this.priceToPay()
+  }
+
+  addAllProducts(quantity){
+    this.getOrCreateCartId()
+    console.log('--------addAllProducts(quantity) ----------');
+    console.log(quantity)
+    // this.productsService.getAll()
+    this.subscription = this.productsService.getAll()
+    .subscribe(products => {
+      this.products = products;
+      console.log('-----------addAllProducts(quantity){---------------');
+      console.log(this.products)
+      for(let i = 0; i <= this.products.length;i++){
+        let imageId:string = this.products[i].imageUrl;
+        let isIdAll30:number = imageId.indexOf(this.progData.idExtraItemAll30 );
+        let isIdAll50:number = imageId.indexOf(this.progData.idExtraItemAll50 );
+        let isIdExtra:number = imageId.indexOf(this.progData.idExtraToPrograme );
+        let isIdEmpty:number = imageId.indexOf("51");
+        if(isIdAll30 !== -1 || isIdAll50 !== -1 || isIdEmpty !== -1){
+
+        }else {
+            this.updateItem(this.products[i],quantity)
+          }
+        }
     });
   }
-  // checkExstraItem():boolean{
-  //   // console.log(' cart service before this.progData.isOkToAddExstraItem == ' ,this.progData.isOkToAddExstraItem)
-
-  //   //  if (!this.progData.isOkToAddExstraItem){
-  //     //  console.log(' cart service in if this.progData.isOkToAddExstraItem == ' ,this.progData.isOkToAddExstraItem)
-  //     // this.progData.checkAddExtraItem()
-      
-  //     this.progData.changeAddExtraItem.subscribe((res) => {
-  //       // if(res){
-  //         this.canAddExtraItem = res
-  //       //  }
-  //     })
-  //   // }
-  //   return this.canAddExtraItem;
-  //  }
+  priceToPay():number{
+    console.log(' priceToPay() this.progData.programName : ');
+    console.log(this.progData.programName);
+    if (this.progData.programName === '6'){
+      return Number(this.cureentCart.totalPrice);
+    }
+    let progPrice:number = Number(this.progData.programPrice);
+    let progLimit:number = Number(this.progData.programLimit);
+    let sumExstra:number = (this.progData.extraSum)as number;
+    let sumExstraAll:number = (this.progData.totalExtraItemAll)as number;
+    let totalToPay:number;
+    console.log('-------- ShoppingCartService -----------');
+    console.log('progPrice : ' , progPrice , ' progLimit:' ,progLimit, ' sumExstra:' , sumExstra , ' sumExstraAll  : ' ,sumExstraAll)
+    if(this.cureentCart.totalPrice > progLimit){
+      totalToPay = this.cureentCart.totalPrice  - ( sumExstraAll + sumExstra)
+     if( totalToPay > progLimit) {
+       let overPriceProgToPay:number = totalToPay - progLimit
+      totalToPay = progPrice + overPriceProgToPay + sumExstraAll + sumExstra
+     }
+    }
+    else{
+      totalToPay = progPrice;
+    }
+    return totalToPay;
+  }
 }

@@ -3,7 +3,7 @@
   <div class="card-body">
     <p>
       יש לך {{ cart.totalItemsCount }} פריטים בעגלת הקניות שלך.
-      <button *ngIf="cart.items.length" (click)="clearCart()" class="float-right btn btn-light btn-sm">ניקוי</button>
+      <button *ngIf="cart.items.length" (click)="clearCart()" class="float-right btn btn-light btn-sm">ניקוי עגלה</button>
 
     </p>
   </div>
@@ -29,8 +29,8 @@
           <product-quantity [product]="item" [shopping-cart]="cart">
           </product-quantity>
         </td>
-        <td class="text-right">
-          {{ item.totalPrice | currency:'USD':true }}
+        <td class="text-right" dir="rtl">
+          {{ item.totalPrice }} ש"ח
         </td>
       </tr>
     </tbody>
@@ -38,8 +38,9 @@
       <tr>
         <th></th>
         <th></th>
+        <!-- <th>{{ priceToPay }} לתשלום ש"ח</th> -->
         <th></th>
-        <th class="text-right">{{ cart.totalPrice | currency:'USD':true }}</th>
+        <th class="text-right" dir="rtl"> {{ cart.totalPrice }} ש"ח </th>
       </tr>
       <tr>
         <th colspan="4">

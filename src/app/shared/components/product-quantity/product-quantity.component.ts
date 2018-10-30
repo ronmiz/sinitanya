@@ -19,6 +19,7 @@ export class ProductQuantityComponent {
   }
 
   addToCart() {
+    console.log('--- ProductQuantityComponent addTocart -- ' , this.product)
     this.cartService.addToCart(this.product);
   }
 

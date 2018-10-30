@@ -5,16 +5,21 @@
     <ul class="list-group list-group-flush">
       <li *ngFor="let item of cart.items" class="list-group-item">
         {{ item.quantity }} x {{ item.title }}
-        <div class="float-right">
-          {{ item.totalPrice | currency:'USD':true }}
+        <div class="float-right" dir="rtl">
+          {{ item.totalPrice }} ש"ח
         </div>
       </li>
       <li class="list-group-item font-weight-bold">
         סה"כ 
-        <div class="float-right">
-          {{ cart.totalPrice | currency:'USD':true }}
-        </div>
+        <div class="float-right" dir="rtl">
+          {{ cart.totalPrice }} ש"ח 
+          </div>     
       </li>
+      <li>      
+         <div class="float-right pay-color"  dir="rtl">
+            לתשלום בפועל  {{ priceToPay }} ש"ח
+          </div>
+        </li>
     </ul>
   </div>
 </div>

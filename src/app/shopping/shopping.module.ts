@@ -13,6 +13,8 @@ import { ProductsComponent } from './components/products/products.component';
 import { ShippingFormComponent } from './components/shipping-form/shipping-form.component';
 import { ShoppingCartSummaryComponent } from './components/shopping-cart-summary/shopping-cart-summary.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { FormWorkerComponent } from 'app/core/form-worker/form-worker.component';
+import { ConfirmComponent } from 'app/core/confirm/confirm.component';
 
 @NgModule({
   imports: [
@@ -20,9 +22,11 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
     RouterModule.forChild([
       { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
-      { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] },
-      { path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuard] },
+      { path: 'check-out', component: CheckOutComponent },
+      { path: 'order-success/:id', component: OrderSuccessComponent },
+      { path: 'order-success', component: OrderSuccessComponent },
       { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
+      { path: 'my/form-worker', component: FormWorkerComponent, canActivate: [AuthGuard] },
     ])
   ],
   declarations: [
@@ -34,6 +38,9 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
     ProductFilterComponent,
     ShoppingCartSummaryComponent,
     ShippingFormComponent
-  ]
+  ], 
+  entryComponents: [
+    ConfirmComponent
+  ],
 })
 export class ShoppingModule { }

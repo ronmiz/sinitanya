@@ -35,6 +35,8 @@ export class ProductsComponent implements OnInit  {
       .getAll()
       .switchMap(products => {
         this.products = products;
+        console.log('------- this.products = products;------------')
+        console.log(this.products )
         return this.route.queryParamMap;
       })
       .subscribe(params => {

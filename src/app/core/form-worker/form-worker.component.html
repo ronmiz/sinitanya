@@ -1,0 +1,57 @@
+<h2 dir="rtl">רישום פרטי נציגה</h2>
+<form #f="ngForm" dir="rtl">
+  <div class="form-group" >
+    <label for="firstName">שם פרטי</label>
+    <input #firstName="ngModel" name="firstName" [(ngModel)]="workerInfo.firstName" type="text" class="form-control" required>
+    <div class="alert alert-danger" *ngIf="firstName.touched && firstName.invalid">
+      <div *ngIf="firstName.errors.required">מילוי  חובה</div>
+    </div>
+  </div>
+  <div class="form-group">
+      <label for="lastName">שם משפחה</label>
+      <input #lastName="ngModel" name="lastName" [(ngModel)]="workerInfo.lastName" type="text" class="form-control" required>
+      <div class="alert alert-danger" *ngIf="lastName.touched && lastName.invalid">
+        <div *ngIf="lastName.errors.required">מילוי חובה</div>
+      </div>
+    </div>
+  <div class="form-group">
+    <label for="city">עיר</label>
+    <input #city="ngModel" name="city" [(ngModel)]="workerInfo.city" type="text" class="form-control" placeholder="עיר" required>
+    <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
+      <div *ngIf="city.errors.required">שם עיר חובה למלא</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="address">כתובת</label>
+    <input #address="ngModel" name="address" [(ngModel)]="workerInfo.address" type="text" class="form-control" placeholder="כתובת" required>
+    <div class="alert alert-danger" *ngIf="address.touched && address.invalid">
+      <div *ngIf="address.errors.required">כתובת חובה למלא</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="phone">טלפון</label>
+    <input #phone="ngModel" name="phone" [(ngModel)]="workerInfo.phone" type="text" class="form-control" placeholder="טלפון נייד">
+    <div class="alert alert-danger" *ngIf="phone.touched && phone.invalid">
+      <div *ngIf="phone.errors.required">חובה למילוי</div>
+    </div>
+  </div>
+  <div class="form-group">
+      <label for="IdNumber">ת.ז</label>
+      <input #mobile="ngModel" name="IdNumber" [(ngModel)]="workerInfo.IdNumber" type="text" class="form-control" placeholder="תעודת זהות" required>
+      <div class="alert alert-danger" *ngIf="mobile.touched && mobile.invalIdNumber">
+        <div *ngIf="IdNumber.errors.required">מילוי חובה</div>
+      </div>
+    </div>
+  <div class="form-group">
+    <label for="email">דוא"ל</label>
+    <input #email="ngModel" name="email" [(ngModel)]="workerInfo.email" type="text" class="form-control" >
+    <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+      <div *ngIf="email.errors.required">מילוי חובה.</div>
+    </div>
+  </div>
+  <button 
+    [disabled]="!f.valid"
+    (click)="addWorker(f)"
+    class="btn btn-primary">הרשמה</button>
+</form>    
+
