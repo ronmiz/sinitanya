@@ -16,7 +16,7 @@ export class ShoppingCartSummaryComponent  {
   }
   ngOnInit(){
     this.priceToPay = Number(this.shoppingCartService.priceToPay());
-    console.log(' this.priceToPay ---------', this.priceToPay)
+    //console.log(' this.priceToPay ---------', this.priceToPay)
   }
 
 }

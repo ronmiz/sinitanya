@@ -10,7 +10,7 @@
       <label for="">שם משפחה</label>
       <input #lastName="ngModel" name="lastName" [(ngModel)]="shipping.lastName" type="text" class="form-control" required>
       <div class="alert alert-danger" *ngIf="lastName.touched && lastName.invalid">
-        <div *ngIf="lastName.errors.required">מילוי שם פרמשפחה חובה</div>
+        <div *ngIf="lastName.errors.required">מילוי שם משפחה חובה</div>
       </div>
     </div>
   <div class="form-group">
@@ -24,7 +24,7 @@
     <label for="homePhone">טלפון בית</label>
     <input #homePhone="ngModel" name="homePhone" [(ngModel)]="shipping.homePhone" type="text" class="form-control" placeholder="טלפון בית">
     <div class="alert alert-danger" *ngIf="homePhone.touched && homePhone.invalid">
-      <div *ngIf="homePhone.errors.required">Address Line 2 is required.</div>
+      <div *ngIf="homePhone.errors.required">מילוי טלפון נייד חובה</div>
     </div>
   </div>
   <div class="form-group">

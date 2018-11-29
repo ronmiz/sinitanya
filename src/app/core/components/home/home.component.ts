@@ -78,11 +78,9 @@ export class HomeComponent implements OnInit {
       actionType:4
     };
     this._isOkToOverLimitsubscription = this.progDataService.changeCanGoOverLimit.subscribe((value) => { 
-      console.log('this.isOkToOverLimit : ' , value)
       this.isOkToOverLimit = value
     });
     this._isOverLimitsubscription = this.progDataService.changeIsOverLimit.subscribe((value) => { 
-      console.log('this.isOverLimit : ' , value)
       this.isOverLimit = value
     });
     this._isInProgramSubscription = this.progDataService.changeAddExtraItem.subscribe(() => { 
@@ -92,11 +90,9 @@ export class HomeComponent implements OnInit {
       });
     this._subscription = this.progDataService.changeTotalPrice.subscribe((value) => { 
       this.totalCartSum = value
-        console.log('this.totalCartSum  == ' ,this.totalCartSum  )
         this.massageOverLimit.titleStr = 'עברת את הסכום למסלול ';
         this.massageOverLimit.bodyStr = 'האם ברצונך לעבור לתשלום?';
         if(!this.isOkToOverLimit){
-          console.log('this.isOkToOverLimit = ' ,this.isOkToOverLimit)
           this.showConfirm(this.massageOverLimit);
         }
       });
@@ -121,13 +117,12 @@ showConfirm(data:IMassageData) {
         if (this.confirmResult && data.actionType === 1)
         {        
           this.SimpleModalService.removeModal
+          this.cartService.clearCart()
           this.router.navigate(['/app-products']);
         } 
         
         if(this.confirmResult && data.actionType === 2 )
         {
-          console.log('data.actionType === 2')
-          // this.isOkToOverLimit = true;
           this.progDataService.updateCanGoOverLimt(true)
           this.message = true;
           this.newMessage()
@@ -144,7 +139,6 @@ showConfirm(data:IMassageData) {
       
         if(this.confirmResult && data.actionType === 3 )
         {
-          console.log('data.actionType === 3')
           this.addExtraItem = true;
           this.progDataService.updateAddExtraItem(true);
 
@@ -155,7 +149,6 @@ showConfirm(data:IMassageData) {
 
         if(this.confirmResult && data.actionType === 4 )
         {
-          console.log('data.actionType === 3')
           this.addExtraItem = true;
           this.progDataService.updateAddAllExtraItem(true);
 
@@ -168,11 +161,10 @@ showConfirm(data:IMassageData) {
     });
   }
   clickCard(value){
-     console.log(value);
     let type:number = parseInt(value);
     this.progDataService.setProgram(type);
     this.massageCard.bodyStr  = 'בחרת במסלול ' + (type+1);
-    this.massageCard.titleStr = 'אנא אשר מסלול נבחר';
+    this.massageCard.titleStr = 'שים לב בעת בחירת מסלול העגלה מתאפסת';
     this.massageCard.actionType = 1;
     if(type+1 === 5){
       this.cartService.addAllProducts(2);

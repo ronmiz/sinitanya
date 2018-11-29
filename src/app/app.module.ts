@@ -6,6 +6,7 @@ import { LOCALE_ID } from '@angular/core';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 // import { MatButtonModule} from '@angular/material';
 import { SimpleModalModule } from 'ngx-simple-modal';
+import { DeviceDetectorModule } from 'ngx-device-detector';
 
 import { environment } from './../environments/environment';
 import { AdminModule } from './admin/admin.module';
@@ -33,6 +34,7 @@ import { FormWorkerComponent } from 'app/core/form-worker/form-worker.component'
     AdminModule,
     ShoppingModule,
     CoreModule,
+    DeviceDetectorModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     RouterModule.forRoot([
       { path: '', component: HomeComponent },

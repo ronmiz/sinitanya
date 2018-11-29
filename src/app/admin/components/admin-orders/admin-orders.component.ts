@@ -14,7 +14,8 @@ export class AdminOrdersComponent {
   totalNumOfOrders:number;
 
   constructor(private orderService: OrderService) { 
-    this.orders$ = orderService.getOrders();
+    //this.orders$ = orderService.getOrders();
+    this.orders$ = orderService.getOrdersBySuccess();
 
     // this.orders$ = authService.user$.switchMap(u =>  orderService.getOrdersByUser(u.uid) )
     this.allOrders = this.orders$.subscribe((order )  =>{
@@ -25,10 +26,10 @@ export class AdminOrdersComponent {
       for(let i =0 ;  i < order.length ; i++){
         if(order[i].totalOrderPrice !== undefined){
         sum = sum + parseInt( order[i].totalOrderPrice)
-        console.log('-------------- MyOrdersComponent -------- (order[i].totalOrderPrice)')
-        console.log(order[i].totalOrderPrice)
-        console.log('-------------- MyOrdersComponent -------- sum')
-      console.log(sum)
+        //console.log('-------------- MyOrdersComponent -------- (order[i].totalOrderPrice)')
+        //console.log(order[i].totalOrderPrice)
+        //console.log('-------------- MyOrdersComponent -------- sum')
+      //console.log(sum)
         this.totalOrdersSum =  sum;
         }
         // OrderCount++

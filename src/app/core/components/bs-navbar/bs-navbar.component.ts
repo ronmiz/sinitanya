@@ -58,23 +58,23 @@ export class BsNavbarComponent implements OnInit {
     this.programName = this.progDataService.programName;
     this._subscription = this.progDataService.changeProgramName.subscribe((value) => { 
     this.programName = value
-      console.log('this.programName == ' ,this.programName  )
+      //console.log('this.programName == ' ,this.programName  )
     });
 
     this.programLimit = this.progDataService.programLimit;
     this._subscription = this.progDataService.changeProgramLimit.subscribe((value) => { 
     this.programLimit = value
-      console.log('this.programLimit == ' ,this.programLimit  )
+      //console.log('this.programLimit == ' ,this.programLimit  )
     });
     this.programPrice = this.progDataService.programPrice;
     this._subscription = this.progDataService.changeProgramPrice.subscribe((value) => { 
     this.programPrice = value
-      console.log('this.programPrice == ' ,this.programPrice  )
+      //console.log('this.programPrice == ' ,this.programPrice  )
     });
     this.isInPrograme = this.progDataService.isInPrograme;
     this._subscription = this.progDataService.changeIsInPrograme.subscribe((value) => { 
     this.isInPrograme = value
-      console.log('this.isInPrograme  == ' ,this.isInPrograme   )
+      //console.log('this.isInPrograme  == ' ,this.isInPrograme   )
     });
   }
   updatetotalPrice(){
@@ -84,14 +84,14 @@ export class BsNavbarComponent implements OnInit {
     this.auth.logout();
   }
   checkAdmin(value){
-    console.log('check admin clicked' , value);
+    //console.log('check admin clicked' , value);
     if(value === '56349822'){
       this.router.navigate(['/login']);
     }
   }
   collapseNav() {
 		if (this.navBarTogglerIsVisible()) {
-			console.log('collapseNav in NavigationComponent clicking navbarToggler')
+			//console.log('collapseNav in NavigationComponent clicking navbarToggler')
 			this.navbarToggler.nativeElement.click();
 		}
 	}

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
 import { UserInfo } from 'firebase/app';
 
 @Injectable()
@@ -9,8 +9,11 @@ export class WorkersService {
   getAll() {
     return this.db.list('/userInfo');
   }
-  getUserInfo(workerId): FirebaseObjectObservable<UserInfo> { 
+   getUserInfo(workerId): FirebaseObjectObservable<UserInfo> { 
     return this.db.object('/userInfo/' + workerId);
   }
 
+  // getUserInfo(workerId): FirebaseListObservable<UserInfo[]> { 
+  //   return this.db.list('/userInfo/' + workerId);
+  // }
 }

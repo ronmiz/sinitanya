@@ -17,7 +17,6 @@ export class ProductCardComponent {
   constructor(private cartService: ShoppingCartService,private programDataService :ProgramDataService) { }
 
   addToCart() {
-    console.log('ProductCardComponent :: addToCart() shoppingCart')
       this.cartService.addToCart(this.product);
       this.updateTotalPrice();
   }

@@ -6,4 +6,6 @@ export  interface workerInfo {
     phone:number;
     IdNumber:number;
     email:string;
+    totalSalesSum:number;
+    totalSalesCount:number;
 }

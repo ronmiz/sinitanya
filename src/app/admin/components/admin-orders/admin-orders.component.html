@@ -7,8 +7,9 @@
       <th>לקוח</th>
       <th>נציגה</th>
       <th>תאריך</th>
-      <!-- <th>שולם</th> -->
+      <th>שולם</th>
       <th>סכום</th>
+      <th>מסלול</th>
       <!-- <th></th> -->
     </tr>
   </thead> 
@@ -17,8 +18,9 @@
       <td>{{ order.shipping.firstName }} {{order.shipping.lastName }}</td>
       <td>{{ order.workderNameInfo }}</td>
       <td>{{ order.datePlaced | date}}</td>
-      <!-- <td>{{ order.ordersSuccess }} </td> -->
+      <td>{{ order.ordersSuccess }} </td>
       <td>{{ order.totalOrderPrice }} ש"ח</td>
+      <td>{{ order.programName }} מסלול</td>
       <!-- <td>
         <a href="#">View</a>
       </td> -->

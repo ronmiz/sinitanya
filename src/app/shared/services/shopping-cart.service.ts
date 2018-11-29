@@ -41,7 +41,6 @@ export class ShoppingCartService {
   }
 
   async addToCart(product: Product) { 
-    console.log('in add to cart product = ' , product)
     let isIdAll30:number = product.imageUrl.indexOf(this.progData.idExtraItemAll30 );
     let isIdAll50:number = product.imageUrl.indexOf(this.progData.idExtraItemAll50 );
     let isId:number = product.imageUrl.indexOf(this.progData.idExtraToPrograme);
@@ -60,7 +59,6 @@ export class ShoppingCartService {
       });
     }else  if(this.progData.isInPrograme  && isId !== -1){
       this.updateItem(product, 1);
-        this.updateItem(product, 1);
       }
       else if (isId !== -1) {
         let  sub = this.progData.changeIsOkToAddExstraItem
@@ -122,19 +120,14 @@ export class ShoppingCartService {
       });
    
     });
-    this.priceToPay()
+    // this.priceToPay()
   }
 
   addAllProducts(quantity){
     this.getOrCreateCartId()
-    console.log('--------addAllProducts(quantity) ----------');
-    console.log(quantity)
-    // this.productsService.getAll()
     this.subscription = this.productsService.getAll()
     .subscribe(products => {
       this.products = products;
-      console.log('-----------addAllProducts(quantity){---------------');
-      console.log(this.products)
       for(let i = 0; i <= this.products.length;i++){
         let imageId:string = this.products[i].imageUrl;
         let isIdAll30:number = imageId.indexOf(this.progData.idExtraItemAll30 );
@@ -150,9 +143,10 @@ export class ShoppingCartService {
     });
   }
   priceToPay():number{
-    console.log(' priceToPay() this.progData.programName : ');
-    console.log(this.progData.programName);
+    //console.log(' priceToPay() this.progData.programName : ');
+    //console.log(this.progData.programName);
     if (this.progData.programName === '6'){
+      //console.log(' ----- programe name is 6')
       return Number(this.cureentCart.totalPrice);
     }
     let progPrice:number = Number(this.progData.programPrice);
@@ -160,15 +154,18 @@ export class ShoppingCartService {
     let sumExstra:number = (this.progData.extraSum)as number;
     let sumExstraAll:number = (this.progData.totalExtraItemAll)as number;
     let totalToPay:number;
-    console.log('-------- ShoppingCartService -----------');
-    console.log('progPrice : ' , progPrice , ' progLimit:' ,progLimit, ' sumExstra:' , sumExstra , ' sumExstraAll  : ' ,sumExstraAll)
-    if(this.cureentCart.totalPrice > progLimit){
-      totalToPay = this.cureentCart.totalPrice  - ( sumExstraAll + sumExstra)
-     if( totalToPay > progLimit) {
-       let overPriceProgToPay:number = totalToPay - progLimit
-      totalToPay = progPrice + overPriceProgToPay + sumExstraAll + sumExstra
-     }
+    //console.log('-------- ShoppingCartService -----------');
+    //console.log('progPrice : ' , progPrice , ' progLimit:' ,progLimit, ' sumExstra:' , sumExstra , ' sumExstraAll  : ' ,sumExstraAll)
+    if(this.cureentCart.totalPrice < progLimit){
+      totalToPay = progPrice + sumExstraAll + sumExstra
+      return totalToPay;
     }
+    if( this.cureentCart.totalPrice > progLimit) {
+       let overPriceProgToPay:number = this.cureentCart.totalPrice - progLimit -  sumExstraAll - sumExstra
+      totalToPay = progPrice + overPriceProgToPay + sumExstraAll + sumExstra
+      return totalToPay;
+     }
+
     else{
       totalToPay = progPrice;
     }

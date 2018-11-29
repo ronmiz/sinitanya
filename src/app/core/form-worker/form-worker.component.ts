@@ -19,8 +19,6 @@ export class FormWorkerComponent implements OnInit {
 
   addWorker(f){
     let info =JSON.parse( JSON.stringify(f.value ));
-    console.log('-----------JSON.stringify(f.value )  Info ------------------');
-    console.log(info);
     this.userInfoService.createUserInfo(info);
     this.confirmRegisterMassage = {
       titleStr:"אישור רישום",

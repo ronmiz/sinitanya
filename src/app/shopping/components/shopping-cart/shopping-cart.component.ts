@@ -18,15 +18,8 @@ export class ShoppingCartComponent implements OnInit {
 
   async ngOnInit() {
     this.cart$ = await this.shoppingCartService.getCart();
-    console.log('------------- shoppingCartService cureentCart----------------');
-    console.log(this.shoppingCartService.cureentCart);
-    // this.cart$.subscribe(x => {
-    //   // if(this.isInPrograme || this.okToAddextra){
-    //     this.priceToPay = x.totalPrice;
-
-    //   // }
-    //   // this.updatetotalPrice();
-    // });
+    //console.log('------------- shoppingCartService cureentCart----------------');
+    //console.log(this.shoppingCartService.cureentCart);
     this.priceToPay = Number(this.shoppingCartService.priceToPay());
 
   }

@@ -5,16 +5,10 @@ export class Order {
   ordersSuccess:string;
   items: any[];
   _workerId: string;
-  constructor(public workderNameInfo,public totalOrderPrice,public workerId:string,public shipping: any, shoppingCart: ShoppingCart) {
-    // console.log('----------- order date -------------------------')
-    // console.log(new Date().getDate())
-    // let data = new Date().getDate()
-    // let houer = (new Date().getHours())
-    //  this.datePlaced = data ;
+  constructor(public programName,public workderNameInfo,public totalOrderPrice,public workerId:string,public shipping: any, shoppingCart: ShoppingCart) {
+
     this.datePlaced = new Date().getTime();
     this.ordersSuccess ="ממתין";
-
-    console.log('this._workerId = ' , this._workerId )
 
     this.items = shoppingCart.items.map(i => {
       return {

@@ -4,7 +4,7 @@ import { ShoppingCartService } from '../../../shared/services/shopping-cart.serv
 import { Product } from '../../../shared/models/product';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../../shared/services/product.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 
 @Component({
@@ -35,8 +35,8 @@ export class ProductsComponent implements OnInit  {
       .getAll()
       .switchMap(products => {
         this.products = products;
-        console.log('------- this.products = products;------------')
-        console.log(this.products )
+        // //console.log('------- this.products = products;------------')
+        // //console.log(this.products )
         return this.route.queryParamMap;
       })
       .subscribe(params => {
@@ -47,7 +47,7 @@ export class ProductsComponent implements OnInit  {
 
 
   private applyFilter() { 
-    console.log("in applyFilter")
+    // //console.log("in applyFilter")
     this.filteredProducts = (this.category) ? 
     this.products.filter(p => p.category === this.category) : 
     this.products;

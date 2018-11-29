@@ -1,0 +1,37 @@
+<h1 dir="rtl">ריכוז נציגות</h1>
+
+<h3 dir="rtl">סה"כ מכירות : {{ totalOrdersSum }} ש"ח  | מספר מכירות : {{ totalNumOfOrders }}  </h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>סכום</th>
+      <th>מספר הזמנות</th>
+      <th>נציגה</th>
+      <!-- <th>לקוח</th>
+      <th>תאריך</th> -->
+      <!-- <th>שולם</th> -->
+      <!-- <th></th> -->
+    </tr>
+  </thead> 
+  <tbody>
+      <!-- <tr *ngFor="let worker of workerListSummry | async"> -->
+    <tr *ngFor="let worker of workerListSummry">
+        <td>{{ worker.workerSum }}</td>
+        <td>{{ worker.WorkerOrderCount }}</td>
+        <td>{{ worker.workerName}}</td>
+        <!-- <td>{{ order.datePlaced | date}}</td> -->
+        <!-- <td>{{ order.workderNameInfo }}</td>
+        <td>{{ order.datePlaced | date}}</td> -->
+        <!-- <td>{{ order.ordersSuccess }} </td> -->
+        <!-- <td>{{ order.totalOrderPrice }} ש"ח</td> -->
+      <!-- <td>{{ order.shipping.firstName }} {{order.shipping.lastName }}</td>
+      <td>{{ order.workderNameInfo }}</td>
+      <td>{{ order.datePlaced | date}}</td>
+      <!-- <td>{{ order.ordersSuccess }} </td> 
+      <td>{{ order.totalOrderPrice }} ש"ח</td> -->
+      <!-- <td>
+        <a href="#">View</a>
+      </td> -->
+    </tr>
+  </tbody> 
+</table>

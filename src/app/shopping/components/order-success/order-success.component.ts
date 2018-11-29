@@ -14,9 +14,10 @@ export class OrderSuccessComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       let orderId= params;
-      console.log(' ------- OrderSuccessComponent orderId' ,orderId)
-      console.log(orderId["id"]);
-      this.orderService.updateOrderSuccess(orderId["id"]);
+      //console.log(' ------- OrderSuccessComponent orderId' ,orderId)
+      //console.log(orderId["id"]);
+      let Id = orderId["id"];
+      this.orderService.updateOrderSuccess(Id);
     });
   }
 

@@ -64,8 +64,8 @@ export class ProgramDataService {
   }
 
   changeMessage(message: boolean) {
-    console.log('------ changeMessage(message: boolean)  ----------');
-    console.log(message)
+    //console.log('------ changeMessage(message: boolean)  ----------');
+    //console.log(message)
     this.messageSource.next(message);
   }
 
@@ -85,7 +85,7 @@ export class ProgramDataService {
     this.programUpdate();
   }
   programUpdate() {
-    console.log(this.programName)
+    //console.log(this.programName)
     this.changeProgramName.next(this.programName);
     this.changeProgramPrice.next(this.programPrice);
     this.changeProgramLimit.next(this.programLimit);
@@ -109,19 +109,23 @@ export class ProgramDataService {
       } 
    }
    this.changeIsInPrograme.next(this.isInPrograme );
-   console.log('this.isInPrograme :: ' ,this.isInPrograme )
+   //console.log('this.isInPrograme :: ' ,this.isInPrograme );
+   
    this.updateCanGoOverLimt(false);
   //  this.updateAddAllExtraItem(false);
+  this.extraSum = 0 ;
+  this.totalExtraItemAll = 0;
+
   }
   updateTotalSum(sum: number) {
     this.totalCartSum = sum
     this.checkTotalSum(sum)
-    console.log('pds this.totalCartSum update  = ', sum);
+    //console.log('pds this.totalCartSum update  = ', sum);
   }
   updateCanGoOverLimt(value: boolean) {
     this.canGoOverLimit = value;
     this.changeCanGoOverLimit.next(this.canGoOverLimit)
-    console.log("PD  updateCanGoOverLimt ::" , this.canGoOverLimit)
+    //console.log("PD  updateCanGoOverLimt ::" , this.canGoOverLimit)
   }
   checkTotalSum(value: number) {
     if(this.extraSum > 0){
@@ -131,19 +135,19 @@ export class ProgramDataService {
       value = value - this.totalExtraItemAll;
     }
     if (value > this.programLimit && !this.canGoOverLimit) {
-      console.log('עברת את סכום החבילה ', this.programLimit, ' סכך הכל לתשלום :', value);
+      //console.log('עברת את סכום החבילה ', this.programLimit, ' סכך הכל לתשלום :', value);
       
-      console.log('---------- this.extraSum -------------');
-      console.log(this.extraSum);
+      //console.log('---------- this.extraSum -------------');
+      //console.log(this.extraSum);
     
-      console.log('---------- this.totalExtraItemAll -------------');
-      console.log(this.totalExtraItemAll);
+      //console.log('---------- this.totalExtraItemAll -------------');
+      //console.log(this.totalExtraItemAll);
 
-      console.log('---------- this.programLimit-------------');
-      console.log(this.programLimit);
+      //console.log('---------- this.programLimit-------------');
+      //console.log(this.programLimit);
 
-      console.log('---------- this.programPrice-------------');
-      console.log(this.programPrice);
+      //console.log('---------- this.programPrice-------------');
+      //console.log(this.programPrice);
 
 
       this.changeTotalPrice.next(value);
@@ -158,20 +162,21 @@ export class ProgramDataService {
 
   updateExrtaSum(value){
     this.extraSum = this.extraSum + value;
-    console.log('---------- this.extraSum -------------');
-    console.log(this.extraSum);
+    //console.log('---------- this.extraSum -------------');
+    //console.log(this.extraSum);
+    // this.updateExrtaSumAll(this.extraSum )
   }
   updateExrtaSumAll(value){
     this.totalExtraItemAll = this.totalExtraItemAll + value;
-    console.log('---------- this.totalExtraItemAll -------------');
-    console.log(this.totalExtraItemAll);
+    //console.log('---------- this.totalExtraItemAll -------------');
+    //console.log(this.totalExtraItemAll);
   }
   updateAddExtraItem(value){
     this.changeIsOkToAddExstraItem.next(value)
   }
   updateAddAllExtraItem(value){
-    console.log('---------- updateAddAllExtraItem(value) this.changeIsOkToAddAllExtraItem : -------------');
-    console.log(this.changeIsOkToAddAllExtraItem);
+    //console.log('---------- updateAddAllExtraItem(value) this.changeIsOkToAddAllExtraItem : -------------');
+    //console.log(this.changeIsOkToAddAllExtraItem);
     this.changeIsOkToAddAllExtraItem.next(value)
   }
 }

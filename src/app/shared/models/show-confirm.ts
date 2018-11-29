@@ -1,7 +1,7 @@
 // export showConfirm
 
 // showConfirm(data:IMassageData) {
-//     console.log('enter showConfirm')
+//     //console.log('enter showConfirm')
 //     this.SimpleModalService.removeAll()
 //     this.SimpleModalService.addModal(ConfirmComponent, {
 //       title: data.titleStr,
@@ -16,7 +16,7 @@
         
 //         if(this.confirmResult && data.actionType === 2 )
 //         {
-//           console.log('data.actionType === 2')
+//           //console.log('data.actionType === 2')
 //           // this.isOkToOverLimit = true;
 //           this.progDataService.changeCanGoOverLimit.next(false)
 //           // this.massageOverLimit.isOkToOverLimit = true;
@@ -31,7 +31,7 @@
       
 //         if(this.confirmResult && data.actionType === 3 )
 //         {
-//           console.log('data.actionType === 3')
+//           //console.log('data.actionType === 3')
 //           this.addExtraItem = true;
 //           this.progDataService.updateAddExtraItem(true);
 //           // this.progDataService.isOkToAddExstraItem = true;

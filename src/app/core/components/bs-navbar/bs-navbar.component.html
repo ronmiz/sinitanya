@@ -15,7 +15,7 @@
      aria-label="Toggle navigation"
 
      >
-      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon">collapse navbar-collapse</span>
     </button> -->
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
@@ -24,7 +24,7 @@
             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
             <span class="badge badge-warning badge-pill" *ngIf="cart$ | async as cart">
              
-             מספר פריטים בעגלה {{ cart.totalItemsCount }} | ס"הכ סכום {{ cart.totalPrice }} ש"ח
+             מספר פריטים בעגלה {{ cart.totalItemsCount }} | סה"כ סכום {{ cart.totalPrice }} ש"ח
               
             </span>
           </a>
@@ -37,8 +37,6 @@
           <button  class="btn btn-outline-primary" (click)="checkAdmin(userPassword.value)">כניסת נציגות</button> 
           <li class="nav-item" >
             
-            <!-- <label for="userPassword">סיסמה : </label> -->
-            <!-- <a class="nav-link" routerLink="/login">כניסה\רישום</a> -->
           </li>
         </ng-template>
         <li ngbDropdown *ngIf="appUser; else anonymousUser" class="nav-item dropdown">
@@ -50,7 +48,7 @@
             <a class="dropdown-item" routerLink="/my/form-worker">פרטים אישיים</a>
             <ng-container *ngIf="appUser.isAdmin">
               <a class="dropdown-item" routerLink="/admin/orders">ניהול הזמנות</a>
-              <!-- <a class="dropdown-item" routerLink="/admin/products">ניהול מוצרים</a> -->
+              <a class="dropdown-item" routerLink="/admin/orders-workers">דוח נציגות</a>
             </ng-container>
             <a class="dropdown-item" (click)="logout()">יציאה</a>
           </div>

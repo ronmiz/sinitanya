@@ -1,15 +1,29 @@
 
 <div class="row">
-  <!-- <div class="col-3">
-    <product-filter [category]="category"></product-filter>
-  </div> -->
+  <div class="col-1">
+    <ul class="navbar-nav mr-auto sticky-top">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/shopping-cart">
+            <i class="fa fa-shopping-cart" aria-hidden="true"> לקופה</i>
+            <br/>
+            <span class="badge badge-warning badge-pill  badge-primary" *ngIf="cart$ | async as cart">
+             
+             מספר פריטים בעגלה {{ cart.totalItemsCount }} <br/> סה"כ סכום {{ cart.totalPrice }} ש"ח
+              
+            </span>
+          </a>
+          <!-- *ngIf="(i + 1) % 2 === 0"<i> סכום לתשלום למסלול : {{ programPrice }} | סכום הקניה למסלול :  {{ programLimit }} |  מסלול {{ programName }} </i> -->
+        </li>
+      </ul>
+    </div>
+    <!-- <product-filter [category]="category"></product-filter> -->
   <div class="col">
     <div class="row" *ngIf="cart$ | async as cart">
         <ng-container *ngFor="let p of filteredProducts; let i = index">
           <div class="col">
             <product-card [product]="p" [shopping-cart]="cart"></product-card>
           </div>
-          <div *ngIf="(i + 1) % 2 === 0" class="w-100"></div>
+          <div  class="w-100"></div>
         </ng-container>
       </div>
   </div>

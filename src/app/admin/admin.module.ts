@@ -9,6 +9,7 @@ import { AdminOrdersComponent } from './components/admin-orders/admin-orders.com
 import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthGuard } from "shared/services/auth-guard.service";
+import { AdminOrdersWorkersComponent } from './components/admin-orders-workers/admin-orders-workers.component';
 
 @NgModule({
   schemas: [NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA],
@@ -34,6 +35,11 @@ import { AuthGuard } from "shared/services/auth-guard.service";
         path: 'admin/orders', 
         component: AdminOrdersComponent, 
         canActivate: [AuthGuard, AdminAuthGuard] 
+      },
+      { 
+        path: 'admin/orders-workers', 
+        component: AdminOrdersWorkersComponent, 
+        canActivate: [AuthGuard, AdminAuthGuard] 
       }
     ])            
   ],
@@ -41,6 +47,7 @@ import { AuthGuard } from "shared/services/auth-guard.service";
     ProductFormComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
+    AdminOrdersWorkersComponent,
   ]
 })
 export class AdminModule { }
