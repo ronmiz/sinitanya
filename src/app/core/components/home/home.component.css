@@ -3,7 +3,6 @@
     margin: 0%;
     padding: 0%;
     background-color: aquamarine;
-    /* width:1140px; */
     height:680px;
 }
 .card-div{
@@ -27,3 +26,15 @@
     padding: 0;
     margin: 0;
 }
+
+.sticky-top { 
+    position: absolute;
+    top:330px;
+    left: 10px;
+    z-index: 2000;
+    font-size: 92px;
+    color: rgb(255, 132, 0);
+    -ms-transform: rotate(-45deg); /* IE 9 */
+    -webkit-transform: rotate(-45deg); /* Safari */
+    transform: rotate(-45deg);
+  }

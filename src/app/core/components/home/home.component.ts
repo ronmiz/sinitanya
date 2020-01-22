@@ -161,16 +161,16 @@ showConfirm(data:IMassageData) {
     });
   }
   clickCard(value){
-    let type:number = parseInt(value);
-    this.progDataService.setProgram(type);
-    this.massageCard.bodyStr  = 'בחרת במסלול ' + (type+1);
-    this.massageCard.titleStr = 'שים לב בעת בחירת מסלול העגלה מתאפסת';
-    this.massageCard.actionType = 1;
-    if(type+1 === 5){
-      this.cartService.addAllProducts(2);
-      this.router.navigate(['/shopping-cart']);
-    }else{
-      this.showConfirm(this.massageCard);
-    }
+    // let type:number = parseInt(value);
+    // this.progDataService.setProgram(type);
+    // this.massageCard.bodyStr  = 'בחרת במסלול ' + (type+1);
+    // this.massageCard.titleStr = 'שים לב בעת בחירת מסלול העגלה מתאפסת';
+    // this.massageCard.actionType = 1;
+    // if(type+1 === 5){
+    //   this.cartService.addAllProducts(2);
+    //   this.router.navigate(['/shopping-cart']);
+    // }else{
+    //   this.showConfirm(this.massageCard);
+    // }
   }
 }

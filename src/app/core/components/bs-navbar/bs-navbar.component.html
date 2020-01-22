@@ -24,11 +24,13 @@
             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
             <span class="badge badge-warning badge-pill" *ngIf="cart$ | async as cart">
              
-             מספר פריטים בעגלה {{ cart.totalItemsCount }} | סה"כ סכום {{ cart.totalPrice }} ש"ח
+             <!-- מספר פריטים בעגלה {{ cart.totalItemsCount }} | סה"כ סכום {{ cart.totalPrice }} ש"ח -->
+             מספר פריטים בעגלה 0 | סה"כ סכום 0 ש"ח
               
             </span>
           </a>
-          <i> סכום לתשלום למסלול : {{ programPrice }} | סכום הקניה למסלול :  {{ programLimit }} |  מסלול {{ programName }} </i>
+          <i> סכום לתשלום למסלול :0| סכום הקניה למסלול :  0 |  מסלול 0 </i>
+          <!-- <i> סכום לתשלום למסלול : {{ programPrice }} | סכום הקניה למסלול :  {{ programLimit }} |  מסלול {{ programName }} </i> -->
         </li>
       </ul>
       <ul class="navbar-nav">

@@ -32,13 +32,13 @@ import { FormWorkerComponent } from 'app/core/form-worker/form-worker.component'
   SimpleModalModule,
     SharedModule,
     AdminModule,
-    ShoppingModule,
+    // ShoppingModule, stop site
     CoreModule,
     DeviceDetectorModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
-      { path: 'app-products', component: ProductsComponent },
+      // { path: 'app-products', component: ProductsComponent },stop site
       { path: 'login', component: LoginComponent },
       { path: 'form-worker', component: FormWorkerComponent },
     ])    
