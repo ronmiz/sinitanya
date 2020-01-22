@@ -29,7 +29,5 @@ export class MyOrdersComponent {
         this.totalNumOfOrders = OrderCount;
       }
     });
-    //console.log('-------------- MyOrdersComponent -------- this.totalNumOfOrders')
-    //console.log(this.totalNumOfOrders)
   }
 }

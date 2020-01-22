@@ -21,7 +21,7 @@ export class ConfirmComponent extends SimpleModalComponent<ConfirmModel, boolean
   }
   confirm() {
     // on click on confirm button we set dialog result as true,
-    // ten we can get dialog result from caller code
+    // then we can get dialog result from caller code
     this.result = true;
     this.close();
   }

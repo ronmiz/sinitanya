@@ -22,7 +22,6 @@ export class UserInfoService {
   createUserInfo(info) {
     if (this.db.list('userInfo/')) {
       this.db.list('userInfo/').update(this.userId, info)
-      //this.db.list(`userInfo/${this.userId}`).update(this.userId,info)
     } else {
       this.db.list('userInfo/').push(info);
     }
@@ -34,8 +33,6 @@ export class UserInfoService {
   updateUserInfoOrder(userId, info: number) {
     let dataUpdate = {}
     let userInfo = this.getUserById(userId).subscribe((data) => {
-      //console.log('userInfo ::');
-      //console.log(userInfo);
       let workerTotalSale: number = parseInt(userInfo['totalSalesSum']);
       workerTotalSale = workerTotalSale + info
       let totalSalesCount: number = parseInt(userInfo['totalSalesCount']);

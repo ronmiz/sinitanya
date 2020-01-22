@@ -12,8 +12,4 @@ export class WorkersService {
    getUserInfo(workerId): FirebaseObjectObservable<UserInfo> { 
     return this.db.object('/userInfo/' + workerId);
   }
-
-  // getUserInfo(workerId): FirebaseListObservable<UserInfo[]> { 
-  //   return this.db.list('/userInfo/' + workerId);
-  // }
 }

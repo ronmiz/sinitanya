@@ -6,8 +6,6 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/take'; 
 import 'rxjs/add/operator/map'; 
 import { ProgramDataService } from './program-data.service';
-import { Subscriber } from 'rxjs/Subscriber';
-import { Observer } from 'firebase/app';
 import { ProductService } from 'shared/services/product.service';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -100,7 +98,6 @@ export class ShoppingCartService {
   private async getOrCreateCartId(): Promise<string> { 
     let cartId = localStorage.getItem('cartId');
     if (cartId) return cartId; 
-
     let result = await this.create();
     localStorage.setItem('cartId', result.key);
     return result.key;
@@ -120,7 +117,6 @@ export class ShoppingCartService {
       });
    
     });
-    // this.priceToPay()
   }
 
   addAllProducts(quantity){
